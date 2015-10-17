@@ -1,9 +1,9 @@
 var path = require('path')
 module.exports = function(actions, jscodeshift){
 	var toReplace = actions.reduce(function(p, c){
-		Objscodeshiftect.keys(c.rename).forEach(function(key){
-			p.from.push('./' + key.replace('.jscodeshifts', ''))
-			p.to.push('./'+ c.rename[key].replace('.jscodeshifts', ''))
+		Object.keys(c.rename).forEach(function(key){
+			p.from.push('./' + key.replace('.js', ''))
+			p.to.push('./'+ c.rename[key].replace('.js', ''))
 		})
 		return p;
 	}, {
