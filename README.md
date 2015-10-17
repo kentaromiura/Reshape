@@ -42,7 +42,9 @@ as you can notice the first transform will always take an array of String and ca
 in my case I'll just return an object so I can decorate it with all the metadata I need
 
 then this object will be feed to *move* that will just set a _delete_ flag with the current path before modifying it to the new one
+
 then the path will be again changed by *rename* to add the _reshaped_ in front of the source name
+
 then *fixRequires* will use [jscodeshift](https://github.com/facebook/jscodeshift) (which is always passed as a second parameter) to find and replace the _require_ s using static analysis
 
 up until this point nothing really happened, we just collected actions to do, we now need an
