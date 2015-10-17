@@ -3,4 +3,4 @@ var c = {
 	b: require('./b')
 };
 
-module.exports = c;
+module.exports = c

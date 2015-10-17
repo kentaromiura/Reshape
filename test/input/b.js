@@ -1,2 +1,2 @@
-var b = {};
-module.exports = b;
+var b = {}
+module.exports = b

@@ -1,12 +1,12 @@
 var clint = require('clint')(),
   glob = require('glob'),
   fs = require('fs'),
-	options = {
-		help: false,
+  options = {
+    help: false,
     pattern: [],
     execute: [],
     last: []
-	},
+  },
   jscodeshift = require('jscodeshift'),
   compose = function(vector){
     return vector.reduce(function(previous, current){      
@@ -49,8 +49,8 @@ clint.on('command', function(name, value) {
 })
 
 clint.on('complete', function() {
-  var execute;
-  var afterAll;
+  var execute
+  var afterAll
   
   if (options.help || !options.pattern.length) {
     console.log(clint.help(2, " : "))
@@ -66,9 +66,9 @@ clint.on('complete', function() {
     
     var result = options.pattern.map(function(item,index,array){
           return execute(item)
-    });
+    })
     
-    afterAll(result, jscodeshift);
+    afterAll(result, jscodeshift)
   }
 })
 
