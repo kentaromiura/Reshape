@@ -10,10 +10,11 @@ var clint = require('clint')(),
   jscodeshift = require('jscodeshift'),
   compose = function(vector){
     return vector.reduce(function(previous, current){      
-        return function(param){
-          return current(previous(param, jscodeshift), jscodeshift)
-        }        
-    }, function(){return arguments[0]})
+      return function(param){
+        return current(previous(param, jscodeshift), jscodeshift)
+      }        
+    }, 
+    function(){return arguments[0]})
   },
   requires = function(path){
     try {
@@ -65,7 +66,7 @@ clint.on('complete', function() {
     }))
     
     var result = options.pattern.map(function(item,index,array){
-          return execute(item)
+      return execute(item)
     })
     
     afterAll(result, jscodeshift)
