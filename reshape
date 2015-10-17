@@ -1,0 +1,2 @@
+#!/bin/bash
+`which node || which nodejs || which js` ./index.js "$@"
