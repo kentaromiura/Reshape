@@ -9,11 +9,11 @@ var clint = require('clint')(),
   },
   jscodeshift = require('jscodeshift'),
   compose = function(vector){
-    return vector.reduce(function(previous, current){      
+    return vector.reduce(function(previous, current){
       return function(param){
         return current(previous(param, jscodeshift), jscodeshift)
-      }        
-    }, 
+      }
+    },
     function(){return arguments[0]})
   },
   requires = function(path){
@@ -52,23 +52,23 @@ clint.on('command', function(name, value) {
 clint.on('complete', function() {
   var execute
   var afterAll
-  
+
   if (options.help || !options.pattern.length) {
     console.log(clint.help(2, " : "))
     console.log('Usage: reshape -p "./test/**/*.js"')
     process.exit(0)
   } else {
-    execute = compose(options.execute.map(requires))    
+    execute = compose(options.execute.map(requires))
     afterAll = compose(options.last.map(requires))
-    
+
     options.pattern = [].concat.apply([], options.pattern.map(function(p){
       return fs.exists(p) ? p : glob.sync(p)
     }))
-    
+
     var result = options.pattern.map(function(item,index,array){
       return execute(item)
     })
-    
+
     afterAll(result, jscodeshift)
   }
 })
