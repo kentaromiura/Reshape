@@ -10,7 +10,7 @@ module.exports = function(actions, jscodeshift){
     from: [],
     to: []
   })
-  
+
   actions = actions.map(function(file){
     var ast = jscodeshift(file.source)
     ast.find(jscodeshift.CallExpression, {
@@ -20,7 +20,7 @@ module.exports = function(actions, jscodeshift){
     }).forEach(function(require){
       var oldVal = require.value.arguments[0].value
       var index = toReplace.from.indexOf(oldVal);
-      if(index != -1){        
+      if(index != -1){
         require.value.arguments[0] = jscodeshift.literal(toReplace.to[index])
       }
     })
